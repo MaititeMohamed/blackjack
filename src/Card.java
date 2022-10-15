@@ -10,8 +10,8 @@ public class Card {
     @Override
     public String toString() {
         return
-                "suit  -" + suit +
-                "value -" + value
+                "  suit  - " + suit +
+                "  value - " + value
                ;
     }
 
