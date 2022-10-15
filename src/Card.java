@@ -9,10 +9,10 @@ public class Card {
  //must be change display style letter
     @Override
     public String toString() {
-        return "Card{" +
-                "suit=" + suit +
-                ", value=" + value +
-                '}';
+        return
+                "suit  -" + suit +
+                "value -" + value
+               ;
     }
 
     public Suit getSuit() {
