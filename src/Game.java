@@ -28,8 +28,8 @@ public class Game {
             System.out.println("[3] Bet With 2000");
             System.out.println("[4] Bet With 2500");
             System.out.println("[5] Bet With 3000");
-            System.out.println("[6]  Bet With 5000");
-            System.out.println("[0]   Exit  ");
+            System.out.println("[6] Bet With 5000");
+            System.out.println("[0] Back To Menu ");
             chosenBetNum = ValidationMet.getChoosenUserInputNumber((byte) 0 , (byte) 6 ,"The Number Of Chosen Bet");
             System.out.println("################################################################## \n");
             if(chosenBetNum == 0) break;
@@ -61,7 +61,7 @@ public class Game {
                     card2 = this.pickedDealerCards.get(1);
                     this.totalDealerCardsValue = this.getTotalCardsValue(false);
                     System.out.print("Given Dealer Card Number  [1]  : \t " + card1.getCardVal().getName() + " \tOf \t "+ card1.getCardShape().getName() + " \t Value [ " + getCardValue(card1 , false) +" ]\n");
-                    System.out.print("Given Dealer Card Number  [2] : \t \t \t  Second Dealer Card Is Hidden   \n");
+                    System.out.print("Given Dealer Card Number  [2] : \t  Second Dealer Card Is Hidden   \n");
                     /************************ Dealer Play ************************/
                     /************************ Ask User Choice ************************/
                     if (this.totalPlayerCardsValue == 21){
@@ -134,15 +134,14 @@ public class Game {
     }
     public void askUserForChoice(){
         byte chosenOption , counter = 3;
-        boolean hideDouble = false , hasStanded = false;
+        boolean  hasStanded = false;
         Card card;
         do {
             System.out.println("\n##################" + cardsList.size());
             System.out.println("[1]  Hit Card");
             System.out.println("[2]  Stand");
-            if(!hideDouble) System.out.println("3 |-{> Double Bet { " + this.chosenBet + " x 2 } = [ " + (this.chosenBet * 2) + " ]");
-            System.out.println("4 |-{> Split Cards ( Currently Disabled )");
-            chosenOption = ValidationMet.getChoosenUserInputNumber((byte) 1, (byte) 3, "The Number Of Chosen Play");
+
+            chosenOption = ValidationMet.getChoosenUserInputNumber((byte) 1, (byte) 2, "The Number Of Chosen Play");
             System.out.println("##################\n");
 
             switch (chosenOption) {
@@ -156,10 +155,7 @@ public class Game {
                 case 2:
                     hasStanded = true;
                     break;
-                case 3:
-                    this.doubleBet(counter);
-                    hasStanded = true;
-                    break;
+
                 case 4:
             }
             if (this.totalPlayerCardsValue > 20) hasStanded = true;
@@ -196,15 +192,6 @@ public class Game {
                 System.out.println("################## Your Total Points [ "+ this.totalPlayerCardsValue +" ]  Dealer Total Points [ "+ totalDealerCardsValue +" ] ##################");
         }
     }
-    public void doubleBet(byte counter){
-        Card card = hitCard();
-        System.out.print("Given Player Card Number [ " + counter +" ] : \t " + card.getCardVal().getName() + " \tOf \t "+ card.getCardShape().getName() + " \t Value |-> [ " + getCardValue(card , true) +" ]\n");
-        this.chosenBet *= 2;
-        this.pickedUserCards.add(card);
-        this.totalPlayerCardsValue = getTotalCardsValue(true);
-        System.out.println("\nCurrent Total Points Of Your Cards : [ " + this.totalPlayerCardsValue + " ]\n");
-    }
-    public void splitCards(){}
     public byte getTotalCardsValue(boolean state){
         ArrayList<Card> arr = state ? this.pickedUserCards : this.pickedDealerCards;
         byte sum = 0;
