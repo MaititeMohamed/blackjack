@@ -16,12 +16,11 @@ public class Game {
 
     public void startGame(){
         int BalanceBet ;
-        int balance_formatted ;
-        String     smallMess;
+        String  errorBalance;
         do {
-            if(this.balance == 0) smallMess = " ( Can't Play With This Balance )"; else smallMess = "";
+            if(this.balance == 0) errorBalance = "  Your Balance not enough "; else errorBalance = "";
             System.out.println("\t\t\t\t\t\t\t\t\t\t\t\t+----------------------------------+");
-            System.out.println("\t\t\t\t\t\t\t\t\t\t\t\tYour Balance : " + NumberFormat.getCurrencyInstance().format(this.balance)+ smallMess +"\n");
+            System.out.println("\t\t\t\t\t\t\t\t\t\t\t\tYour Balance : " + NumberFormat.getCurrencyInstance().format(this.balance)+ errorBalance +"\n");
             System.out.println("\t\t\t\t\t\t\t\t\t\t\t\t[1] Bet  $100");
             System.out.println("\t\t\t\t\t\t\t\t\t\t\t\t[2] Bet  $200");
             System.out.println("\t\t\t\t\t\t\t\t\t\t\t\t[3] Bet  $300");
@@ -39,18 +38,17 @@ public class Game {
             if(this.balance - this.chosenBet <=0) {
              System.out.println("\t\t\t\t\t\t\t\t\t\t\t\t Your Balance not enough  ");
             }else {
-                    balance_formatted = this.chosenBet;
-                    System.out.println("\n You Beted With  [ "+ balance_formatted +" ]  \t Discounting Bet From Balance ....\n");
+                    System.out.println("\t\t\t\t\t\t\t\t\t\t\t\t you Bet  [ "+ NumberFormat.getCurrencyInstance().format( this.chosenBet) +" ]  ");
                     this.shuffleCards();
-                    System.out.println("Distributing Cards .... \n");
-                    /************************ User Play ************************/
+                    //user
+                    //add Two Cards hit to pickedUsercards arralist
                     Collections.addAll(this.pickedUserCards , this.hitCard() , this.hitCard());
-                    System.out.println("Picked User Cards : \n");
+                    System.out.println("\t\t\t\t\t\t\t\t\t\t\t\t  User Cards : ");
                     Card card1 = this.pickedUserCards.get(0);
                     Card card2 = this.pickedUserCards.get(1);
                     System.out.print("Given Player Card Number [ 1 ] : \t " + card1.getCardVal().getName() + " \tOf \t "+ card1.getCardShape().getName() + " \t Value  [ " + getCardValue(card1 , true) +" ]\n");
                     System.out.print("Given Player Card Number [ 2 ] : \t " + card2.getCardVal().getName() + " \tOf \t "+ card2.getCardShape().getName() + " \t Value  [ " + getCardValue(card2 , true) +" ]\n");
-                    this.totalPlayerCardsValue = this.getTotalCardsValue(true);
+                    this.totalPlayerCardsValue = this.TotalCardsValue(true);
                     if(this.totalPlayerCardsValue == 21) {
                         System.out.println("\n \t \t \t \t ################## [Nice You Got A Black Jack ] ################## \t \t \t \t\n");
                     }
@@ -69,7 +67,7 @@ public class Game {
                         if(this.totalDealerCardsValue == 21) { // Draw
                             System.out.print("Given Dealer Card Number { 2 } : \t " + card2.getCardVal().getName() + " \tOf \t "+ card2.getCardShape().getName() + " \t Value [ " + getCardValue(card2 , false) +" ]\n");
                             System.out.println("\n \t \t \t \t ################## : (  The Dealer Got  A[Black Jack] ################## \t \t \t \t\n");
-                            this.totalDealerCardsValue = this.getTotalCardsValue(false);
+                            this.totalDealerCardsValue = this.TotalCardsValue(false);
                             System.out.println("\nTotal Points Of The Dealer Cards : [ " + this.totalDealerCardsValue + " ]\n");
                             this.checkTheWinner((byte) 0);
                         } else {
@@ -82,7 +80,7 @@ public class Game {
                         // Showing The Second Flipped Card Of The Dealer
                         System.out.println(" Flipping Card  \n");
                         System.out.print("Given Dealer Card Number [2] : \t " + card1.getCardVal().getName() + " \tOf \t "+ card1.getCardShape().getName() + " \t Value  [ " + getCardValue(card2 , false) +" ]\n");
-                        this.totalDealerCardsValue = this.getTotalCardsValue(false);
+                        this.totalDealerCardsValue = this.TotalCardsValue(false);
                         System.out.println("\nCurrent Total Points Of The Dealer Cards : [ " + this.totalDealerCardsValue + " ]\n");
                     }
 
@@ -119,20 +117,22 @@ public class Game {
         }
     }
     public void shuffleCards(){
-        System.out.println("Shuffling Card's  \n");
         Collections.shuffle(this.cardsList);
     }
     public Card hitCard(){
+        //hit card using random method for get card randomly
         Card card;
+        //if cardlist not empty
         if(!this.cardsList.isEmpty()) {
             byte cardIndex = (byte) (Math.random() * this.cardsList.size());
             card = this.cardsList.get(cardIndex);
             this.cardsList.remove(cardIndex);
         }else {
-            System.out.println("Cards Run Out , Recreating Cards Again  \n");
+            //if cardlist  empty  create new cardlist
             this.createCards();
             this.shuffleCards();
-            card = this.hitCard(); // Applied Recursive Method Call Principe
+            //  Recursive Method
+            card = this.hitCard();
         }
         return card;
     }
@@ -153,7 +153,7 @@ public class Game {
                     card = hitCard();
                     System.out.print("Given Player Card Number [ " + counter +" ] : \t " + card.getCardVal().getName() + " \tOf \t "+ card.getCardShape().getName() + " \t Value [ " + getCardValue(card , true) +" ]\n");
                     this.pickedUserCards.add(card);
-                    this.totalPlayerCardsValue = getTotalCardsValue(true);
+                    this.totalPlayerCardsValue = TotalCardsValue(true);
                     System.out.println("\nCurrent Total Points Of Your Cards : [ " + this.totalPlayerCardsValue + " ]\n");
                     break;
                 case 2:
@@ -173,7 +173,7 @@ public class Game {
                 this.pickedDealerCards.add(card);
                 System.out.println("\n\t \t The Dealer Hited The Following Card : \n");
                 System.out.print("Given Dealer Card Number { " + counter +" } : \t " + card.getCardVal().getName() + " \tOf \t "+ card.getCardShape().getName() + " \t Value |-> { " + getCardValue(card , false) +" }\n");
-                this.totalDealerCardsValue = getTotalCardsValue(false);
+                this.totalDealerCardsValue = TotalCardsValue(false);
                 System.out.println("\nCurrent Total Points Of The Dealer Cards : [ " + this.totalDealerCardsValue + " ]\n");
                 counter++;
         }
@@ -196,7 +196,7 @@ public class Game {
                 System.out.println("################## Your Total Points [ "+ this.totalPlayerCardsValue +" ]  Dealer Total Points [ "+ totalDealerCardsValue +" ] ##################");
         }
     }
-    public byte getTotalCardsValue(boolean state){
+    public byte TotalCardsValue(boolean state){
         ArrayList<Card> arr = state ? this.pickedUserCards : this.pickedDealerCards;
         byte sum = 0;
         for( Card card : arr ){
