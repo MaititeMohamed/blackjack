@@ -5,8 +5,8 @@ public class Main {
     Menu();
     }
     public static   void  createGame(){
-        Game game = new Game(); // Creating A New Game
-        game.createCards(); // Calling The Function That Generate Cards And Storing Them To The CardsList by For Looping in each enum
+        Game game = new Game();
+        game.createCards();
         game.startGame();
     }
     public static  void  leave(){

@@ -1,39 +1,39 @@
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Scanner;
 
 // Tiles --> Hearts --> Speads --> Clovers
 public class Game {
-    private int balance = 20_000; // $
+    private int balance = 2_100; // $
     private int chosenBet;
     private ArrayList<Card> cardsList = new ArrayList<>();
-    private short[] avalaibleBets = {1000 , 1500 , 2000 , 2500 , 3000 , 5000};// Storing avalaible bets
+    private short[] avalaibleBets = {100 , 200 , 300 , 400 , 500 , 600};// Storing avalaible bets
     private  ArrayList<Card> pickedUserCards = new ArrayList<>();
     private  ArrayList<Card> pickedDealerCards = new ArrayList<>();
     private byte totalPlayerCardsValue;
     private byte totalDealerCardsValue;
 
-    // Rules : if Both black Jack -> Push /2 * 1.5 But if a black jack happens after first distribution it Only Counts As Double
     public void startGame(){
-        /* *************************** Variables ***************************** */
-        byte chosenBetNum ;
+        int BalanceBet ;
         String balance_formatted , smallMess;
-        /* *************************** Variables ***************************** */
-        System.out.println("\n Youre About To Start A New Game ... \n \n");
         do {
             if(this.balance == 0) smallMess = " ( Can't Play With This Balance )"; else smallMess = "";
-            System.out.println("\n ###################################################################");
-            System.out.println("\t \t \t \t \t \t Current Balance : " + ValidationMet.formatNumber(this.balance) + smallMess +"\n");
-            System.out.println("[1] Bet With 1000");
-            System.out.println("[2] Bet With 1500");
-            System.out.println("[3] Bet With 2000");
-            System.out.println("[4] Bet With 2500");
-            System.out.println("[5] Bet With 3000");
-            System.out.println("[6] Bet With 5000");
-            System.out.println("[0] Back To Menu ");
-            chosenBetNum = ValidationMet.getChoosenUserInputNumber((byte) 0 , (byte) 6 ,"The Number Of Chosen Bet");
-            System.out.println("################################################################## \n");
-            if(chosenBetNum == 0) break;
-            this.chosenBet =  this.avalaibleBets[--chosenBetNum];
+            System.out.println("\t\t\t\t\t\t\t\t\t\t\t\t+----------------------------------+");
+            System.out.println("\t\t\t\t\t\t\t\t\t\t\t\tYour Balance : " + ValidationMet.formatNumber(this.balance) + smallMess +"\n");
+            System.out.println("\t\t\t\t\t\t\t\t\t\t\t\t[1] Bet  $100");
+            System.out.println("\t\t\t\t\t\t\t\t\t\t\t\t[2] Bet  $200");
+            System.out.println("\t\t\t\t\t\t\t\t\t\t\t\t[3] Bet  $300");
+            System.out.println("\t\t\t\t\t\t\t\t\t\t\t\t[4] Bet  $400");
+            System.out.println("\t\t\t\t\t\t\t\t\t\t\t\t[5] Bet  $500");
+            System.out.println("\t\t\t\t\t\t\t\t\t\t\t\t[6] Bet  $600");
+            System.out.println("\t\t\t\t\t\t\t\t\t\t\t\t[0] Back To Menu ");
+            System.out.println("\t\t\t\t\t\t\t\t\t\t\t\t  ");
+            System.out.print("\t\t\t\t\t\t\t\t\t\t\t\t Enter your choice  ");
+            Scanner scanner =new Scanner(System.in);
+            BalanceBet = scanner.nextInt();
+            System.out.println("\t\t\t\t\t\t\t\t\t\t\t\t+----------------------------------+");
+            if(BalanceBet == 0) break;
+            this.chosenBet =  this.avalaibleBets[--BalanceBet];
             if( !(this.balance - this.chosenBet >= 0) ) {
                 System.out.println("\nYou Don't Have Enough Balance To Play With this Bet Or Your Balance run out  , Try Another Bet Or Come Back Later ... \n");
             }else {
