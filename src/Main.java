@@ -15,6 +15,7 @@ public class Main {
         System.out.println("\t\t\t\t\t\t\t\t\t\t\t\t+----------------------------------+");
     }
 
+
     public static void  Menu(){
         Scanner scanner =new Scanner(System.in);
         int chose =10;
