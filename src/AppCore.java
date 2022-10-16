@@ -9,8 +9,8 @@ public class AppCore {
     private int chosenBet;
     private ArrayList<Card> cardsList = new ArrayList<>();
     private short[] listofBalance = {100 , 200 , 300 , 400 , 500 , 600};
-    private  ArrayList<Card> pickedUserCards = new ArrayList<>();
-    private  ArrayList<Card> pickedDealerCards = new ArrayList<>();
+    private  ArrayList<Card> UserCards = new ArrayList<>();
+    private  ArrayList<Card> DealerCards = new ArrayList<>();
     private byte totalPlayerCardsValue;
     private byte totalDealerCardsValue;
 
@@ -41,11 +41,11 @@ public class AppCore {
                     System.out.println("\t\t\t\t\t\t\t\t\t\t\t\t you Bet  [ "+ NumberFormat.getCurrencyInstance().format( this.chosenBet) +" ]  ");
                     this.shuffleCards();
                     //user
-                    //add Two Cards hit to pickedUsercards arralist
-                    Collections.addAll(this.pickedUserCards , this.hitCard() , this.hitCard());
+                    //add Two Cards hit to UserCards arralist
+                    Collections.addAll(this.UserCards , this.hitCard() , this.hitCard());
                     System.out.println("\t\t\t\t\t\t\t\t\t\t\t\t  User Cards : ");
-                    Card card1 = this.pickedUserCards.get(0);
-                    Card card2 = this.pickedUserCards.get(1);
+                    Card card1 = this.UserCards.get(0);
+                    Card card2 = this.UserCards.get(1);
                     System.out.print("\t\t\t\t\t\t\t\t\t\t\t\t Player Card Number [ 1 ] : \t " + card1.getCardVal().getName() + " \tOf \t "+ card1.getCardShape().getName() + " \t Value  [ " + getCardValue(card1 , true) +" ]\n");
                     System.out.print("\t\t\t\t\t\t\t\t\t\t\t\t Player Card Number [ 2 ] : \t " + card2.getCardVal().getName() + " \tOf \t "+ card2.getCardShape().getName() + " \t Value  [ " + getCardValue(card2 , true) +" ]\n");
                     this.totalPlayerCardsValue = this.TotalCardsValue(true);
@@ -54,10 +54,10 @@ public class AppCore {
                     }
                     System.out.println("\n\t\t\t\t\t\t\t\t\t\t\t\tTotal Points Of Your Cards : [ " + this.totalPlayerCardsValue + " ]\n");
                     // Dealer Play
-                    Collections.addAll(this.pickedDealerCards , this.hitCard() , this.hitCard());
+                    Collections.addAll(this.DealerCards , this.hitCard() , this.hitCard());
                     System.out.println("\t\t\t\t\t\t\t\t\t\t\t\t Dealer Cards : \n");
-                    card1 = this.pickedDealerCards.get(0);
-                    card2 = this.pickedDealerCards.get(1);
+                    card1 = this.DealerCards.get(0);
+                    card2 = this.DealerCards.get(1);
                     System.out.print("\t\t\t\t\t\t\t\t\t\t\t\t Dealer Card Number  [1]  : \t " + card1.getCardVal().getName() + " \tOf \t "+ card1.getCardShape().getName() + " \t Value [ " + getCardValue(card1 , false) +" ]\n");
                     System.out.print("\t\t\t\t\t\t\t\t\t\t\t\t Dealer Card Number  [2] : \t    Hidden  Card  \n");
 
@@ -96,7 +96,7 @@ public class AppCore {
         }while (chosenBet != 0);
     }
     private void ClearData() {
-        this.pickedDealerCards.clear(); this.pickedUserCards.clear();
+        this.DealerCards.clear(); this.UserCards.clear();
         this.totalDealerCardsValue = 0; this.totalPlayerCardsValue = 0;
     }
     public  void whoIsTheWinner(){
@@ -163,9 +163,9 @@ public class AppCore {
                 case 1:
                     card = hitCard();
                     System.out.print("\t\t\t\t\t\t\t\t\t\t\t\t Player Card Number [ " + NumberCartHit +" ] : \t " + card.getCardVal().getName() + " \tOf \t "+ card.getCardShape().getName() + " \t Value [ " + getCardValue(card , true) +" ]\n");
-                    this.pickedUserCards.add(card);
+                    this.UserCards.add(card);
                     this.totalPlayerCardsValue = TotalCardsValue(true);
-                    System.out.println("\t\t\t\t\t\t\t\t\t\t\t\t\nCurrent Total Points Of Your Cards : [ " + this.totalPlayerCardsValue + " ]\n");
+                    System.out.println("\t\t\t\t\t\t\t\t\t\t\t\tCurrent Total Points Of Your Cards : [ " + this.totalPlayerCardsValue + " ]");
                     break;
                 case 2:
                     isStand = true;
@@ -181,7 +181,7 @@ public class AppCore {
         byte NumberCartHit = 3;
         while( this.totalDealerCardsValue <= 16 ){
                 Card card = hitCard();
-                this.pickedDealerCards.add(card);
+                this.DealerCards.add(card);
                 System.out.println("\n\t\t\t\t\t\t\t\t\t\t\t\t  Dealer Hit  Card : \n");
                 System.out.print("\t\t\t\t\t\t\t\t\t\t\t\t Dealer Card Number [ " + NumberCartHit +" ] : \t " + card.getCardVal().getName() + " \tOf \t "+ card.getCardShape().getName() + " \t Value  [ " + getCardValue(card , false) +" ]\n");
                 this.totalDealerCardsValue = TotalCardsValue(false);
@@ -189,8 +189,8 @@ public class AppCore {
                 NumberCartHit++;
         }
     }
-    public void winnerMessage(byte num){
-        switch (num){
+    public void winnerMessage(byte Message){
+        switch (Message){
             case -1 :
                 this.balance -= this.chosenBet;
                 // Dealer Wins
@@ -209,9 +209,9 @@ public class AppCore {
                 System.out.println("\t\t\t\t\t\t\t\t\t\t\t\t################## Your Total Points [ "+ this.totalPlayerCardsValue +" ]  Dealer Total Points [ "+ totalDealerCardsValue +" ] ");
         }
     }
-    public byte TotalCardsValue(boolean state){
-        // call pickedUserCards to store it in Card arr
-        ArrayList<Card> arr = state ? this.pickedUserCards : this.pickedDealerCards;
+    public byte TotalCardsValue(boolean playerType){
+        // call UserCards to store it in Card arr
+        ArrayList<Card> arr = playerType ? this.UserCards : this.DealerCards;
         byte sum = 0;
         for( Card card : arr ){
             if( card.getCardVal().getName().equals("Las") && sum <= 10) {
@@ -222,8 +222,8 @@ public class AppCore {
         }
         return sum;
     }
-    public byte getCardValue(Card card , boolean state){
-        byte total = state ? this.totalPlayerCardsValue : this.totalDealerCardsValue ;
+    public byte getCardValue(Card card , boolean playerType){
+        byte total = playerType ? this.totalPlayerCardsValue : this.totalDealerCardsValue ;
         byte cardVal = card.getCardVal().getCardGameVal();
         if( card.getCardVal().getName().equals("Las") && total <= 10) {
             cardVal += 10;
