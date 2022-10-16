@@ -69,23 +69,23 @@ public class AppCore {
                             System.out.println("\n\t\t\t\t\t\t\t\t\t\t\t\t ################## :  [Black Jack for Dealer] ################## \t \t \t \t\n");
                             this.totalDealerCardsValue = this.TotalCardsValue(false);
                             System.out.println("\n\t\t\t\t\t\t\t\t\t\t\t\t Total Points Of  Dealer Cards : [ " + this.totalDealerCardsValue + " ]\n");
-                            this.checkTheWinner((byte) 0);
+                            this.winnerMessage((byte) 0);
                         } else {
                             // Player Wins
                             this.chosenBet *= 1.5;
-                            this.checkTheWinner((byte) 1);
+                            this.winnerMessage((byte) 1);
                         }
                     } else  {
-                        this.askUserForChoice();
-                        // Showing The Second Flipped Card Of The Dealer
+                        this.hitOrStand();
+                        // Showing The  hidene Card for Dealer
                         System.out.print("\t\t\t\t\t\t\t\t\t\t\t\t Dealer Card Number [2] : \t " + card2.getCardVal().getName() + " \tOf \t "+ card2.getCardShape().getName() + " \t Value  [ " + getCardValue(card2 , false) +" ]\n");
                         this.totalDealerCardsValue = this.TotalCardsValue(false);
                         System.out.println("\n\t\t\t\t\t\t\t\t\t\t\t\tCurrent Total Points Of The Dealer Cards : [ " + this.totalDealerCardsValue + " ]\n");
                     }
 
-                  // Calling The Function To Handle The Dealer Play
+                  // hit for dealer
                     if ( this.totalPlayerCardsValue <= 21 ) {
-                        this.autoHandleDealerMoves();
+                        this.hitCardfordealer();
                     }
 
                    whoIsTheWinner();
@@ -102,20 +102,20 @@ public class AppCore {
     public  void whoIsTheWinner(){
         if( this.totalPlayerCardsValue == this.totalDealerCardsValue ) {
             //Draw
-            this.checkTheWinner((byte) 0);
+            this.winnerMessage((byte) 0);
         }
         else if ( this.totalPlayerCardsValue > this.totalDealerCardsValue && this.totalPlayerCardsValue <= 21 ){
-            this.checkTheWinner((byte) 1);
+            this.winnerMessage((byte) 1);
             //player win
         } else if( this.totalPlayerCardsValue > this.totalDealerCardsValue && this.totalPlayerCardsValue > 21 ){
-            this.checkTheWinner((byte) -1);
+            this.winnerMessage((byte) -1);
             //dealer win
         }
         else if ( this.totalDealerCardsValue > this.totalPlayerCardsValue && this.totalDealerCardsValue <= 21 ) {
-            this.checkTheWinner((byte) -1);
+            this.winnerMessage((byte) -1);
             //dealer win
         } else if ( this.totalDealerCardsValue > this.totalPlayerCardsValue && this.totalDealerCardsValue > 21 ){
-            this.checkTheWinner((byte) 1);
+            this.winnerMessage((byte) 1);
             //player win
         }
     }
@@ -146,7 +146,7 @@ public class AppCore {
         }
         return card;
     }
-    public void askUserForChoice(){
+    public void hitOrStand(){
         int chosenOption ;
         int NumberCartHit = 3;
         boolean  isStand = false;
@@ -177,7 +177,7 @@ public class AppCore {
             NumberCartHit++;
         }while (!isStand);
     }
-    public void autoHandleDealerMoves(){
+    public void hitCardfordealer(){
         byte NumberCartHit = 3;
         while( this.totalDealerCardsValue <= 16 ){
                 Card card = hitCard();
@@ -189,24 +189,24 @@ public class AppCore {
                 NumberCartHit++;
         }
     }
-    public void checkTheWinner(byte numState){
-        switch (numState){
+    public void winnerMessage(byte num){
+        switch (num){
             case -1 :
                 this.balance -= this.chosenBet;
                 // Dealer Wins
-                System.out.println("\n\t\t\t\t\t\t\t\t\t\t\t\t##################  You Lost This Round :  Best Luck Next Time \n");
+                System.out.println("\n\t\t\t\t\t\t\t\t\t\t\t\t##################  You Lost  \n");
                 System.out.println(" \t\t\t\t\t\t\t\t\t\t\t\tYour Total Points [ "+ this.totalPlayerCardsValue +" ]   Dealer Total Points [ "+ totalDealerCardsValue +" ] ");
                 break;
             case 0 :
                 //  Draw
-                System.out.println("\n\t\t\t\t\t\t\t\t\t\t\t\t################## This Rouned Finished With Draw :  Best Luck Next Time ##################\n");
-                System.out.println("\t\t\t\t\t\t\t\t\t\t\t\t################## Your Total Points [ "+ this.totalPlayerCardsValue +" ]  Dealer Total Points [ "+ totalDealerCardsValue +" ] ##################");
+                System.out.println("\n\t\t\t\t\t\t\t\t\t\t\t\t################## Draw  ##################\n");
+                System.out.println("\t\t\t\t\t\t\t\t\t\t\t\t################## Your Total Points [ "+ this.totalPlayerCardsValue +" ]  Dealer Total Points [ "+ totalDealerCardsValue +" ] ");
                 break;
             case 1 :
                 this.balance += this.chosenBet;
                 // Player Wins
-                System.out.println("\n\t\t\t\t\t\t\t\t\t\t\t\t##################  Nice , You Won This Round  ##################\n");
-                System.out.println("\t\t\t\t\t\t\t\t\t\t\t\t################## Your Total Points [ "+ this.totalPlayerCardsValue +" ]  Dealer Total Points [ "+ totalDealerCardsValue +" ] ##################");
+                System.out.println("\n\t\t\t\t\t\t\t\t\t\t\t\t##################  Nice , You Won   ##################\n");
+                System.out.println("\t\t\t\t\t\t\t\t\t\t\t\t################## Your Total Points [ "+ this.totalPlayerCardsValue +" ]  Dealer Total Points [ "+ totalDealerCardsValue +" ] ");
         }
     }
     public byte TotalCardsValue(boolean state){
