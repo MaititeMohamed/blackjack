@@ -13,7 +13,7 @@ public class Game {
     private byte totalDealerCardsValue;
 
     // Rules : if Both black Jack -> Push /2 * 1.5 But if a black jack happens after first distribution it Only Counts As Double
-    public void LaunchingNewGame(){
+    public void startGame(){
         /* *************************** Variables ***************************** */
         byte chosenBetNum ;
         String balance_formatted , smallMess;
@@ -82,7 +82,7 @@ public class Game {
                     System.out.println(" Flipping Card  \n");
                     System.out.print("Given Dealer Card Number [2] : \t " + card1.getCardVal().getName() + " \tOf \t "+ card1.getCardShape().getName() + " \t Value  [ " + getCardValue(card2 , false) +" ]\n");
                     System.out.println("\nCurrent Total Points Of The Dealer Cards : [ " + this.totalDealerCardsValue + " ]\n");
-                // Calling The Function To Handle The Dealer Play
+                  // Calling The Function To Handle The Dealer Play
                     if ( this.totalPlayerCardsValue <= 21 ) {
                         this.autoHandleDealerMoves();
                     }
