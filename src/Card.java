@@ -1,33 +1,22 @@
 public class Card {
-    private  Suit suit;
-    private  Value value;
+    private Value value;
+    private Shape shape;
 
-    public Card(Suit suit, Value value) {
-        this.suit = suit;
-        this.value = value;
-    }
- //must be change display style letter
-    @Override
-    public String toString() {
-        return
-                "  suit  - " + suit +
-                "  value - " + value
-               ;
+    public Card(Value card, Shape shape) {
+        this.value = card;
+        this.shape = shape;
     }
 
-    public Suit getSuit() {
-        return suit;
-    }
-
-    public void setSuit(Suit suit) {
-        this.suit = suit;
-    }
-
-    public Value getValue() {
+    public Value getCardVal() {
         return value;
     }
 
-    public void setValue(Value value) {
-        this.value = value;
+    public Shape getCardShape() {
+        return shape;
+    }
+
+    @Override
+    public String toString() {
+        return "Card Value : " + getCardVal() + " || Card Shape : " + getCardShape() + "\n";
     }
 }

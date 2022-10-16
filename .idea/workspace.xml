@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="47eb6a18-ff9d-41c0-9009-4656a62af29f" name="Changes" comment="Refactored Code Fixed Some Bugs , I Think This is The Last Version Of The Project :)">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Game.java" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Enum" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectId" id="2FytDy6714i9NCGyeCHRXcKI0dq" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;
+  }
+}</component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="47eb6a18-ff9d-41c0-9009-4656a62af29f" name="Changes" comment="" />
+      <created>1665476042401</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1665476042401</updated>
+    </task>
+    <task id="LOCAL-00001" summary="Pushed The config Files">
+      <created>1665476096484</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1665476096484</updated>
+    </task>
+    <task id="LOCAL-00002" summary="Created The Classes And The Enums required To Create Each Card with its Properties ( NUmber , Shape , Value ) , And Currentlly Working On A Method That Will generate All The Cards And STore Them Into An Array List Based On The First Card As An Argument">
+      <created>1665493217540</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1665493217540</updated>
+    </task>
+    <task id="LOCAL-00003" summary="Finished The SHuffle Card Method That Reorder the cards randomly in the array to prevent cheating ...">
+      <created>1665572447277</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1665572447277</updated>
+    </task>
+    <task id="LOCAL-00004" summary="Overrided ToString Method To Print Out The properties of The Card">
+      <created>1665613731221</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1665613731221</updated>
+    </task>
+    <task id="LOCAL-00005" summary="Created The Launching Game Method Wich know is able only to distribute randomly Cards for both dealer and player and shows every card its properties and Values and tells you if you the players got a black jack and gives the results of the two first cards given">
+      <created>1665613910890</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1665613910890</updated>
+    </task>
+    <task id="LOCAL-00006" summary="Created The Main Menu Wich now includes only the start Menu of The Game And Calss The Launching Game Method from The Game Class">
+      <created>1665613977610</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1665613977610</updated>
+    </task>
+    <task id="LOCAL-00007" summary="Grouped All The Methods That Will Help me To Validate User Input And Other Things ...">
+      <created>1665614035751</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1665614035751</updated>
+    </task>
+    <task id="LOCAL-00008" summary="Modified Some Little Things">
+      <created>1665614067154</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1665614067154</updated>
+    </task>
+    <task id="LOCAL-00009" summary="Modified Some Little Things Removed Some Useless Code Add Two Functions To COunt The Result Of A Picked CardsArray Value And Another Method To Get A Value Of A Specific Card">
+      <created>1665698046668</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1665698046668</updated>
+    </task>
+    <task id="LOCAL-00010" summary="Refactored Code ...">
+      <created>1665698076125</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1665698076125</updated>
+    </task>
+    <task id="LOCAL-00011" summary="Refactored Code , Removed Bugs &amp; Useless Code">
+      <created>1665773253542</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1665773253542</updated>
+    </task>
+    <task id="LOCAL-00012" summary="Refactored Code , Removed Useless Code">
+      <created>1665871695295</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1665871695295</updated>
+    </task>
+    <task id="LOCAL-00013" summary="Finished The Game ...">
+      <created>1665871729898</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1665871729898</updated>
+    </task>
+    <task id="LOCAL-00014" summary="Refactored Code Fixed Some Bugs , I Think This is The Last Version Of The Project :)">
+      <created>1665916349562</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1665916349562</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
+    <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Pushed The config Files" />
+    <MESSAGE value="Created The Classes And The Enums required To Create Each Card with its Properties ( NUmber , Shape , Value ) , And Currentlly Working On A Method That Will generate All The Cards And STore Them Into An Array List Based On The First Card As An Argument" />
+    <MESSAGE value="Added Some Modifications And Created A Method That Will Generate The 52 Cards By Looping Through enums of each card" />
+    <MESSAGE value="Finished The SHuffle Card Method That Reorder the cards randomly in the array to prevent cheating ..." />
+    <MESSAGE value="Overrided ToString Method To Print Out The properties of The Card" />
+    <MESSAGE value="Created The Launching Game Method Wich know is able only to distribute randomly Cards for both dealer and player and shows every card its properties and Values and tells you if you the players got a black jack and gives the results of the two first cards given" />
+    <MESSAGE value="Created The Main Menu Wich now includes only the start Menu of The Game And Calss The Launching Game Method from The Game Class" />
+    <MESSAGE value="Grouped All The Methods That Will Help me To Validate User Input And Other Things ..." />
+    <MESSAGE value="Modified Some Little Things" />
+    <MESSAGE value="Modified Some Little Things Removed Some Useless Code Add Two Functions To COunt The Result Of A Picked CardsArray Value And Another Method To Get A Value Of A Specific Card" />
+    <MESSAGE value="Refactored Code ..." />
+    <MESSAGE value="Refactored Code , Removed Bugs &amp; Useless Code" />
+    <MESSAGE value="Refactored Code , Removed Useless Code" />
+    <MESSAGE value="Finished The Game ..." />
+    <MESSAGE value="Refactored Code Fixed Some Bugs , I Think This is The Last Version Of The Project :)" />
+    <option name="LAST_COMMIT_MESSAGE" value="Refactored Code Fixed Some Bugs , I Think This is The Last Version Of The Project :)" />
+  </component>
+</project>
