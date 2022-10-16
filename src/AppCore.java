@@ -4,7 +4,7 @@ import java.util.Collections;
 import java.util.Scanner;
 
 // Tiles --> Hearts --> Speads --> Clovers
-public class Game {
+public class AppCore {
     private int balance = 2_100; // $
     private int chosenBet;
     private ArrayList<Card> cardsList = new ArrayList<>();
@@ -88,26 +88,38 @@ public class Game {
                     if ( this.totalPlayerCardsValue <= 21 ) {
                         this.autoHandleDealerMoves();
                     }
-                    // Check The Winner
-                    if( this.totalPlayerCardsValue == this.totalDealerCardsValue ) {
-                        this.checkTheWinner((byte) 0);
-                    }
-                    else if ( this.totalPlayerCardsValue > this.totalDealerCardsValue && this.totalPlayerCardsValue <= 21 ){
-                        this.checkTheWinner((byte) 1);
-                    } else if( this.totalPlayerCardsValue > this.totalDealerCardsValue && this.totalPlayerCardsValue > 21 ){
-                        this.checkTheWinner((byte) -1);
-                    }
-                    else if ( this.totalDealerCardsValue > this.totalPlayerCardsValue && this.totalDealerCardsValue <= 21 ) {
-                        this.checkTheWinner((byte) -1);
-                    } else if ( this.totalDealerCardsValue > this.totalPlayerCardsValue && this.totalDealerCardsValue > 21 ){
-                        this.checkTheWinner((byte) 1);
-                    }
-                    // Clearing The Picked Dealer And Player Cards Array
-                    this.pickedDealerCards.clear(); this.pickedUserCards.clear();
-                    this.totalDealerCardsValue = 0; this.totalPlayerCardsValue = 0;
+
+                   whoIsTheWinner();
+                   ClearData();
+
             }
 
         }while (chosenBet != 0);
+    }
+
+    private void ClearData() {
+        this.pickedDealerCards.clear(); this.pickedUserCards.clear();
+        this.totalDealerCardsValue = 0; this.totalPlayerCardsValue = 0;
+    }
+    public  void whoIsTheWinner(){
+        if( this.totalPlayerCardsValue == this.totalDealerCardsValue ) {
+            //Draw
+            this.checkTheWinner((byte) 0);
+        }
+        else if ( this.totalPlayerCardsValue > this.totalDealerCardsValue && this.totalPlayerCardsValue <= 21 ){
+            this.checkTheWinner((byte) 1);
+            //player win
+        } else if( this.totalPlayerCardsValue > this.totalDealerCardsValue && this.totalPlayerCardsValue > 21 ){
+            this.checkTheWinner((byte) -1);
+            //dealer win
+        }
+        else if ( this.totalDealerCardsValue > this.totalPlayerCardsValue && this.totalDealerCardsValue <= 21 ) {
+            this.checkTheWinner((byte) -1);
+            //dealer win
+        } else if ( this.totalDealerCardsValue > this.totalPlayerCardsValue && this.totalDealerCardsValue > 21 ){
+            this.checkTheWinner((byte) 1);
+            //player win
+        }
     }
     public void createCards(){
         for (Shape shape : Shape.values()){
@@ -137,52 +149,53 @@ public class Game {
         return card;
     }
     public void askUserForChoice(){
-        byte chosenOption , counter = 3;
-        boolean  hasStanded = false;
+        int chosenOption ;
+        int NumberCartHit = 3;
+        boolean  isStand = false;
+        Scanner scanner =new Scanner(System.in);
         Card card;
         do {
-            System.out.println("\n##################" + cardsList.size());
-            System.out.println("[1]  Hit Card");
-            System.out.println("[2]  Stand");
-
-            chosenOption = ValidationMet.getChoosenUserInputNumber((byte) 1, (byte) 2, "The Number Of Chosen Play");
-            System.out.println("##################\n");
-
+            System.out.println("\t\t\t\t\t\t\t\t\t\t\t\t\n##################" + cardsList.size());
+            System.out.println("\t\t\t\t\t\t\t\t\t\t\t\t[1]  Hit Card");
+            System.out.println("\t\t\t\t\t\t\t\t\t\t\t\t[2]  Stand");
+            System.out.print("\t\t\t\t\t\t\t\t\t\t\t\tEnter Your Choice :");
+            chosenOption=scanner.nextInt();
+            System.out.println("\t\t\t\t\t\t\t\t\t\t\t\t##################\n");
             switch (chosenOption) {
                 case 1:
                     card = hitCard();
-                    System.out.print("Given Player Card Number [ " + counter +" ] : \t " + card.getCardVal().getName() + " \tOf \t "+ card.getCardShape().getName() + " \t Value [ " + getCardValue(card , true) +" ]\n");
+                    System.out.print("\t\t\t\t\t\t\t\t\t\t\t\t Player Card Number [ " + NumberCartHit +" ] : \t " + card.getCardVal().getName() + " \tOf \t "+ card.getCardShape().getName() + " \t Value [ " + getCardValue(card , true) +" ]\n");
                     this.pickedUserCards.add(card);
                     this.totalPlayerCardsValue = TotalCardsValue(true);
-                    System.out.println("\nCurrent Total Points Of Your Cards : [ " + this.totalPlayerCardsValue + " ]\n");
+                    System.out.println("\t\t\t\t\t\t\t\t\t\t\t\t\nCurrent Total Points Of Your Cards : [ " + this.totalPlayerCardsValue + " ]\n");
                     break;
                 case 2:
-                    hasStanded = true;
+                    isStand = true;
                     break;
 
                 case 4:
             }
-            if (this.totalPlayerCardsValue > 20) hasStanded = true;
-            counter++;
-        }while (!hasStanded);
+            if (this.totalPlayerCardsValue > 20) isStand = true;
+            NumberCartHit++;
+        }while (!isStand);
     }
     public void autoHandleDealerMoves(){
-        byte counter = 3;
+        byte NumberCartHit = 3;
         while( this.totalDealerCardsValue <= 16 ){
                 Card card = hitCard();
                 this.pickedDealerCards.add(card);
                 System.out.println("\n\t \t The Dealer Hited The Following Card : \n");
-                System.out.print("Given Dealer Card Number { " + counter +" } : \t " + card.getCardVal().getName() + " \tOf \t "+ card.getCardShape().getName() + " \t Value |-> { " + getCardValue(card , false) +" }\n");
+                System.out.print("Given Dealer Card Number { " + NumberCartHit +" } : \t " + card.getCardVal().getName() + " \tOf \t "+ card.getCardShape().getName() + " \t Value |-> { " + getCardValue(card , false) +" }\n");
                 this.totalDealerCardsValue = TotalCardsValue(false);
                 System.out.println("\nCurrent Total Points Of The Dealer Cards : [ " + this.totalDealerCardsValue + " ]\n");
-                counter++;
+                NumberCartHit++;
         }
     }
     public void checkTheWinner(byte numState){
         switch (numState){
             case -1 :
                 this.balance -= this.chosenBet;// -1 --> Dealer Wins
-                System.out.println("\n################## Sadly You Lost This Round :  Best Luck Next Time \n");
+                System.out.println("\n##################  You Lost This Round :  Best Luck Next Time \n");
                 System.out.println(" Your Total Points [ "+ this.totalPlayerCardsValue +" ]   Dealer Total Points [ "+ totalDealerCardsValue +" ] ");
                 break;
             case 0 :
@@ -197,6 +210,7 @@ public class Game {
         }
     }
     public byte TotalCardsValue(boolean state){
+        // call pickedUserCards to store it in Card arr
         ArrayList<Card> arr = state ? this.pickedUserCards : this.pickedDealerCards;
         byte sum = 0;
         for( Card card : arr ){

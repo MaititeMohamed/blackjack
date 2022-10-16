@@ -5,7 +5,7 @@ public class Main {
     Menu();
     }
     public static   void  createGame(){
-        Game game = new Game();
+        AppCore game = new AppCore();
         game.createCards();
         game.startGame();
     }
