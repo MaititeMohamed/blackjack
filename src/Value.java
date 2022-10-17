@@ -1,14 +1,14 @@
 public enum Value {
-    LAS("Las", (byte) 1 ),// Can hold Two values 1 and 11 but by default i give it 1
-    DOS("Dos", (byte) 2) ,
-    TRES("Tres",  (byte) 3) ,
-    CUATRO("Cuatro",  (byte) 4) ,
-    CINCO("Cinco",  (byte) 5) ,
-    SEIS("Seis",  (byte) 6) ,
-    SIETE("Siete",  (byte) 7) ,
-    OCHO("Ocho",  (byte) 8) ,
-    NUEVO("Nuevo",  (byte) 9) ,
-    DIEZ("Diez", (byte) 10) ,
+    ONE("one", (byte) 1 ),// Can hold Two values 1 and 11 but by default i give it 1
+    TOW("two", (byte) 2) ,
+    THREE("three",  (byte) 3) ,
+    FOUR("four",  (byte) 4) ,
+    FIVE("five",  (byte) 5) ,
+    SIX("six",  (byte) 6) ,
+    SEVEN("seven",  (byte) 7) ,
+    EIGHT("eight",  (byte) 8) ,
+    NINE("nine",  (byte) 9) ,
+    TEN("ten", (byte) 10) ,
     JACK("Jack",  (byte) 10),
     QUEEN("Queen",  (byte) 10),
     KING("King",  (byte) 10);

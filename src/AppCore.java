@@ -53,8 +53,11 @@ public class AppCore {
         Card card;
         //if cardlist not empty
         if(!this.cardsList.isEmpty()) {
+            //casting the number return to byte because random methode return double value .
             byte cardIndex = (byte) (Math.random() * this.cardsList.size());
+            //get the element from cardlist
             card = this.cardsList.get(cardIndex);
+            //remove the element from cardList
             this.cardsList.remove(cardIndex);
         }else {
             //if cardlist  empty  create new cardlist
@@ -136,9 +139,8 @@ public class AppCore {
         ArrayList<Card> arr = playerType ? this.UserCards : this.DealerCards;
         byte sum = 0;
         for( Card card : arr ){
-            if( card.getCardVal().getName().equals("Las") && sum <= 10) {
-                sum += 11;
-            }else {
+            if( card.getCardVal().getName().equals("one") && sum <= 10) sum += 11;
+            else {
                 sum += card.getCardVal().getCardGameVal();
             }
         }
@@ -147,7 +149,7 @@ public class AppCore {
     public byte getCardValue(Card card , boolean playerType){
         byte total = playerType ? this.totalPlayerCardsValue : this.totalDealerCardsValue ;
         byte cardVal = card.getCardVal().getCardGameVal();
-        if( card.getCardVal().getName().equals("Las") && total <= 10) {
+        if( card.getCardVal().getName().equals("one") && total <= 10) {
             cardVal += 10;
         }
         return cardVal;
