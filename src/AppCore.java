@@ -3,7 +3,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Scanner;
 
-// Tiles --> Hearts --> Speads --> Clovers
 public class AppCore {
     private int balance = 2_100; // $
     private int chosenBet;

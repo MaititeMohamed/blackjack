@@ -24,8 +24,8 @@ public class Main {
             System.out.println("");
             System.out.println("\t\t\t\t\t\t\t\t\t\t\t\t+---------[ Black Jack Game ]---------+");
             System.out.println("\t\t\t\t\t\t\t\t\t\t\t\t|                                     |");
-            System.out.println("\t\t\t\t\t\t\t\t\t\t\t\t|         Enter [1] for start         |");
-            System.out.println("\t\t\t\t\t\t\t\t\t\t\t\t|         Enter [0] To Leave          |");
+            System.out.println("\t\t\t\t\t\t\t\t\t\t\t\t|         [1]   start                 |");
+            System.out.println("\t\t\t\t\t\t\t\t\t\t\t\t|         [0]   Leave                 |");
             System.out.println("\t\t\t\t\t\t\t\t\t\t\t\t|                                     |");
             System.out.println("\t\t\t\t\t\t\t\t\t\t\t\t+-------------------------------------+");
             System.out.println("");
