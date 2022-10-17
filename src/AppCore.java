@@ -171,6 +171,7 @@ public class AppCore {
             Scanner scanner =new Scanner(System.in);
             BalanceBet = scanner.nextInt();
             System.out.println("\t\t\t\t\t\t\t\t\t\t\t\t+----------------------------------+");
+            //check for user Balance choice
             if(BalanceBet == 0) break;
             if(BalanceBet==1){
                 this.chosenBet =100;
@@ -185,7 +186,6 @@ public class AppCore {
             }else if (BalanceBet==6) {
                 this.chosenBet=600;
             }
-
             if(this.balance - this.chosenBet <=0) {
                 System.out.println("\t\t\t\t\t\t\t\t\t\t\t\t Your Balance not enough  ");
             }else {

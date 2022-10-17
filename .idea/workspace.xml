@@ -5,14 +5,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="47eb6a18-ff9d-41c0-9009-4656a62af29f" name="Changes" comment="Refactored Code Fixed Some Bugs , I Think This is The Last Version Of The Project :)">
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Cards_Terminal_App.iml" beforeDir="false" afterPath="$PROJECT_DIR$/BlackJackApp.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Cards_Terminal_App/AppCore.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Cards_Terminal_App/Card.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Cards_Terminal_App/Main.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Cards_Terminal_App/Shape.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Cards_Terminal_App/Value.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/AppCore.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/AppCore.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
