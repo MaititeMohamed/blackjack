@@ -8,93 +8,16 @@ public class AppCore {
     private int balance = 2_100; // $
     private int chosenBet;
     private ArrayList<Card> cardsList = new ArrayList<>();
-    private short[] listofBalance = {100 , 200 , 300 , 400 , 500 , 600};
+    //array List for card chose by user
     private  ArrayList<Card> UserCards = new ArrayList<>();
+    //array List for card chose by Dealer
     private  ArrayList<Card> DealerCards = new ArrayList<>();
+    //total Cards values  of user
     private byte totalPlayerCardsValue;
+    //total Cards values  of Dealer
     private byte totalDealerCardsValue;
 
-    public void startGame(){
-        int BalanceBet ;
-        String  errorBalance;
-        do {
-            if(this.balance == 0) errorBalance = "  Your Balance not enough "; else errorBalance = "";
-            System.out.println("\t\t\t\t\t\t\t\t\t\t\t\t+----------------------------------+");
-            System.out.println("\t\t\t\t\t\t\t\t\t\t\t\tYour Balance : " + NumberFormat.getCurrencyInstance().format(this.balance)+ errorBalance +"\n");
-            System.out.println("\t\t\t\t\t\t\t\t\t\t\t\t[1] Bet  $100");
-            System.out.println("\t\t\t\t\t\t\t\t\t\t\t\t[2] Bet  $200");
-            System.out.println("\t\t\t\t\t\t\t\t\t\t\t\t[3] Bet  $300");
-            System.out.println("\t\t\t\t\t\t\t\t\t\t\t\t[4] Bet  $400");
-            System.out.println("\t\t\t\t\t\t\t\t\t\t\t\t[5] Bet  $500");
-            System.out.println("\t\t\t\t\t\t\t\t\t\t\t\t[6] Bet  $600");
-            System.out.println("\t\t\t\t\t\t\t\t\t\t\t\t[0] Back To Menu ");
-            System.out.println("\t\t\t\t\t\t\t\t\t\t\t\t  ");
-            System.out.print("\t\t\t\t\t\t\t\t\t\t\t\t Enter your choice  ");
-            Scanner scanner =new Scanner(System.in);
-            BalanceBet = scanner.nextInt();
-            System.out.println("\t\t\t\t\t\t\t\t\t\t\t\t+----------------------------------+");
-            if(BalanceBet == 0) break;
-            this.chosenBet =  this.listofBalance[--BalanceBet];
-            if(this.balance - this.chosenBet <=0) {
-             System.out.println("\t\t\t\t\t\t\t\t\t\t\t\t Your Balance not enough  ");
-            }else {
-                    System.out.println("\t\t\t\t\t\t\t\t\t\t\t\t you Bet  [ "+ NumberFormat.getCurrencyInstance().format( this.chosenBet) +" ]  ");
-                    this.shuffleCards();
-                    //user
-                    //add Two Cards hit to UserCards arralist
-                    Collections.addAll(this.UserCards , this.hitCard() , this.hitCard());
-                    System.out.println("\t\t\t\t\t\t\t\t\t\t\t\t  User Cards : ");
-                    Card card1 = this.UserCards.get(0);
-                    Card card2 = this.UserCards.get(1);
-                    System.out.print("\t\t\t\t\t\t\t\t\t\t\t\t Player Card Number [ 1 ] : \t " + card1.getCardVal().getName() + " \tOf \t "+ card1.getCardShape().getName() + " \t Value  [ " + getCardValue(card1 , true) +" ]\n");
-                    System.out.print("\t\t\t\t\t\t\t\t\t\t\t\t Player Card Number [ 2 ] : \t " + card2.getCardVal().getName() + " \tOf \t "+ card2.getCardShape().getName() + " \t Value  [ " + getCardValue(card2 , true) +" ]\n");
-                    this.totalPlayerCardsValue = this.TotalCardsValue(true);
-                    if(this.totalPlayerCardsValue == 21) {
-                        System.out.println("\n \t\t\t\t\t\t\t\t\t\t\t\t ################## [Nice You Got A Black Jack ] ################## \t \t \t \t\n");
-                    }
-                    System.out.println("\n\t\t\t\t\t\t\t\t\t\t\t\tTotal Points Of Your Cards : [ " + this.totalPlayerCardsValue + " ]\n");
-                    // Dealer Play
-                    Collections.addAll(this.DealerCards , this.hitCard() , this.hitCard());
-                    System.out.println("\t\t\t\t\t\t\t\t\t\t\t\t Dealer Cards : \n");
-                    card1 = this.DealerCards.get(0);
-                    card2 = this.DealerCards.get(1);
-                    System.out.print("\t\t\t\t\t\t\t\t\t\t\t\t Dealer Card Number  [1]  : \t " + card1.getCardVal().getName() + " \tOf \t "+ card1.getCardShape().getName() + " \t Value [ " + getCardValue(card1 , false) +" ]\n");
-                    System.out.print("\t\t\t\t\t\t\t\t\t\t\t\t Dealer Card Number  [2] : \t    Hidden  Card  \n");
 
-                    // User Choice
-                    if (this.totalPlayerCardsValue == 21){
-                        if(this.totalDealerCardsValue == 21) {
-                            // we have a  Draw hear
-                            System.out.print("\t\t\t\t\t\t\t\t\t\t\t\t Dealer Card Number [ 2 ] : \t " + card2.getCardVal().getName() + " \tOf \t "+ card2.getCardShape().getName() + " \t Value [ " + getCardValue(card2 , false) +" ]\n");
-                            System.out.println("\n\t\t\t\t\t\t\t\t\t\t\t\t ################## :  [Black Jack for Dealer] ################## \t \t \t \t\n");
-                            this.totalDealerCardsValue = this.TotalCardsValue(false);
-                            System.out.println("\n\t\t\t\t\t\t\t\t\t\t\t\t Total Points Of  Dealer Cards : [ " + this.totalDealerCardsValue + " ]\n");
-                            this.winnerMessage((byte) 0);
-                        } else {
-                            // Player Wins
-                            this.chosenBet *= 1.5;
-                            this.winnerMessage((byte) 1);
-                        }
-                    } else  {
-                        this.hitOrStand();
-                        // Showing The  hidene Card for Dealer
-                        System.out.print("\t\t\t\t\t\t\t\t\t\t\t\t Dealer Card Number [2] : \t " + card2.getCardVal().getName() + " \tOf \t "+ card2.getCardShape().getName() + " \t Value  [ " + getCardValue(card2 , false) +" ]\n");
-                        this.totalDealerCardsValue = this.TotalCardsValue(false);
-                        System.out.println("\n\t\t\t\t\t\t\t\t\t\t\t\tCurrent Total Points Of The Dealer Cards : [ " + this.totalDealerCardsValue + " ]\n");
-                    }
-
-                  // hit for dealer
-                    if ( this.totalPlayerCardsValue <= 21 ) {
-                        this.hitCardfordealer();
-                    }
-
-                   whoIsTheWinner();
-                   ClearData();
-
-            }
-
-        }while (chosenBet != 0);
-    }
     private void ClearData() {
         this.DealerCards.clear(); this.UserCards.clear();
         this.totalDealerCardsValue = 0; this.totalPlayerCardsValue = 0;
@@ -125,9 +48,6 @@ public class AppCore {
                 this.cardsList.add(new Card(value , shape));
             }
         }
-    }
-    public void shuffleCards(){
-        Collections.shuffle(this.cardsList);
     }
     public Card hitCard(){
         //hit card using random method for get card randomly
@@ -189,6 +109,9 @@ public class AppCore {
                 NumberCartHit++;
         }
     }
+    public void shuffleCards(){
+        Collections.shuffle(this.cardsList);
+    }
     public void winnerMessage(byte Message){
         switch (Message){
             case -1 :
@@ -229,6 +152,99 @@ public class AppCore {
             cardVal += 10;
         }
         return cardVal;
+    }
+    public void startGame(){
+        int BalanceBet ;
+        String  errorBalance;
+        do {
+            if(this.balance == 0) errorBalance = "  Your Balance not enough "; else errorBalance = "";
+            System.out.println("\t\t\t\t\t\t\t\t\t\t\t\t+-------------------------------------+");
+            System.out.println("\t\t\t\t\t\t\t\t\t\t\t\tYour Balance : " + NumberFormat.getCurrencyInstance().format(this.balance)+ errorBalance +"\n");
+            System.out.println("\t\t\t\t\t\t\t\t\t\t\t\t+-------------[I want Bet]------------+");
+            System.out.println("\t\t\t\t\t\t\t\t\t\t\t\t|   [1] Bet  $100   [4] Bet  $400     |");
+            System.out.println("\t\t\t\t\t\t\t\t\t\t\t\t|   [2] Bet  $200   [5] Bet  $500     |");
+            System.out.println("\t\t\t\t\t\t\t\t\t\t\t\t|   [3] Bet  $300   [6] Bet  $600     |");
+            System.out.println("\t\t\t\t\t\t\t\t\t\t\t\t|   [0] Back To Menu                  |");
+            System.out.println("\t\t\t\t\t\t\t\t\t\t\t\t+-------------------------------------+");
+            System.out.println("\t\t\t\t\t\t\t\t\t\t\t\t  ");
+            System.out.print("\t\t\t\t\t\t\t\t\t\t\t\t Enter your choice  ");
+            Scanner scanner =new Scanner(System.in);
+            BalanceBet = scanner.nextInt();
+            System.out.println("\t\t\t\t\t\t\t\t\t\t\t\t+----------------------------------+");
+            if(BalanceBet == 0) break;
+            if(BalanceBet==1){
+                this.chosenBet =100;
+            } else if (BalanceBet==2) {
+                this.chosenBet =200;
+            } else if (BalanceBet==3) {
+                this.chosenBet=300;
+            } else if (BalanceBet==4) {
+                this.chosenBet=400;
+            }else if (BalanceBet==5) {
+                this.chosenBet=500;
+            }else if (BalanceBet==6) {
+                this.chosenBet=600;
+            }
+
+            if(this.balance - this.chosenBet <=0) {
+                System.out.println("\t\t\t\t\t\t\t\t\t\t\t\t Your Balance not enough  ");
+            }else {
+                System.out.println("\t\t\t\t\t\t\t\t\t\t\t\t you Bet  [ "+ NumberFormat.getCurrencyInstance().format( this.chosenBet) +" ]  ");
+                this.shuffleCards();
+                //user
+                //add Two Cards hit to UserCards arralist
+                Collections.addAll(this.UserCards , this.hitCard() , this.hitCard());
+                System.out.println("\t\t\t\t\t\t\t\t\t\t\t\t  User Cards : ");
+                Card card1 = this.UserCards.get(0);
+                Card card2 = this.UserCards.get(1);
+                System.out.print("\t\t\t\t\t\t\t\t\t\t\t\t Player Card Number [ 1 ] : \t " + card1.getCardVal().getName() + " \tOf \t "+ card1.getCardShape().getName() + " \t Value  [ " + getCardValue(card1 , true) +" ]\n");
+                System.out.print("\t\t\t\t\t\t\t\t\t\t\t\t Player Card Number [ 2 ] : \t " + card2.getCardVal().getName() + " \tOf \t "+ card2.getCardShape().getName() + " \t Value  [ " + getCardValue(card2 , true) +" ]\n");
+                this.totalPlayerCardsValue = this.TotalCardsValue(true);
+                if(this.totalPlayerCardsValue == 21) {
+                    System.out.println("\n \t\t\t\t\t\t\t\t\t\t\t\t ################## [Nice You Got A Black Jack ] ################## \t \t \t \t\n");
+                }
+                System.out.println("\n\t\t\t\t\t\t\t\t\t\t\t\tTotal Points Of Your Cards : [ " + this.totalPlayerCardsValue + " ]\n");
+                // Dealer Play
+                Collections.addAll(this.DealerCards , this.hitCard() , this.hitCard());
+                System.out.println("\t\t\t\t\t\t\t\t\t\t\t\t Dealer Cards : \n");
+                card1 = this.DealerCards.get(0);
+                card2 = this.DealerCards.get(1);
+                System.out.print("\t\t\t\t\t\t\t\t\t\t\t\t Dealer Card Number  [1]  : \t " + card1.getCardVal().getName() + " \tOf \t "+ card1.getCardShape().getName() + " \t Value [ " + getCardValue(card1 , false) +" ]\n");
+                System.out.print("\t\t\t\t\t\t\t\t\t\t\t\t Dealer Card Number  [2] : \t    Hidden  Card  \n");
+
+                // User Choice
+                if (this.totalPlayerCardsValue == 21){
+                    if(this.totalDealerCardsValue == 21) {
+                        // we have a  Draw hear
+                        System.out.print("\t\t\t\t\t\t\t\t\t\t\t\t Dealer Card Number [ 2 ] : \t " + card2.getCardVal().getName() + " \tOf \t "+ card2.getCardShape().getName() + " \t Value [ " + getCardValue(card2 , false) +" ]\n");
+                        System.out.println("\n\t\t\t\t\t\t\t\t\t\t\t\t ################## :  [Black Jack for Dealer] ################## \t \t \t \t\n");
+                        this.totalDealerCardsValue = this.TotalCardsValue(false);
+                        System.out.println("\n\t\t\t\t\t\t\t\t\t\t\t\t Total Points Of  Dealer Cards : [ " + this.totalDealerCardsValue + " ]\n");
+                        this.winnerMessage((byte) 0);
+                    } else {
+                        // Player Wins
+                        this.chosenBet *= 1.5;
+                        this.winnerMessage((byte) 1);
+                    }
+                } else  {
+                    this.hitOrStand();
+                    // Showing The  hidene Card for Dealer
+                    System.out.print("\t\t\t\t\t\t\t\t\t\t\t\t Dealer Card Number [2] : \t " + card2.getCardVal().getName() + " \tOf \t "+ card2.getCardShape().getName() + " \t Value  [ " + getCardValue(card2 , false) +" ]\n");
+                    this.totalDealerCardsValue = this.TotalCardsValue(false);
+                    System.out.println("\n\t\t\t\t\t\t\t\t\t\t\t\tCurrent Total Points Of The Dealer Cards : [ " + this.totalDealerCardsValue + " ]\n");
+                }
+
+                // hit for dealer
+                if ( this.totalPlayerCardsValue <= 21 ) {
+                    this.hitCardfordealer();
+                }
+
+                whoIsTheWinner();
+                ClearData();
+
+            }
+
+        }while (chosenBet != 0);
     }
 
 }
