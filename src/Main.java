@@ -1,9 +1,12 @@
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
     Menu();
     }
+
+    
     public static   void  createGame(){
         AppCore game = new AppCore();
         game.createCards();
@@ -14,7 +17,6 @@ public class Main {
         System.out.println("\t\t\t\t\t\t\t\t\t\t\t\t|---------  See you soon  ---------|");
         System.out.println("\t\t\t\t\t\t\t\t\t\t\t\t+----------------------------------+");
     }
-
 
     public static void  Menu(){
         Scanner scanner =new Scanner(System.in);
@@ -41,4 +43,11 @@ public class Main {
             }
         }while (chose!=0);
     }
+
+
+
+
+
+
+
 }

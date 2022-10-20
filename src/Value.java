@@ -1,5 +1,5 @@
 public enum Value {
-    ONE("one", (byte) 1 ),// Can hold Two values 1 and 11 but by default i give it 1
+    ONE("one", (byte) 1 ),
     TOW("two", (byte) 2) ,
     THREE("three",  (byte) 3) ,
     FOUR("four",  (byte) 4) ,
